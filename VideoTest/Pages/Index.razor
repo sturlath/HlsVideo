@@ -1,0 +1,21 @@
+﻿@page "/"
+@using VideoTest.Interopts;
+
+@inject VideoService VideoService;
+
+
+
+<video id="player" width="640" height="360" controls></video>
+
+@code
+{
+    private ElementReference player;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await VideoService.LoadHlsStreamAsync("https://myServer.streaming.media.azure.net/0b4ba27d-2e47-45c3-b764-00713ede5d25/a6c1feb9-e9b7-4003-997d-6ca720e14da1.ism/manifest(format=mpd-time-cmaf,encryption=cbc)&aes=true", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiJjMmUzN2IyYy1iNTg5LTQxNTEtYjlkYy1mNTU1NDc2MGI4NDAiLCJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6bWF4dXNlcyI6IjUiLCJuYmYiOjE2NzYzMDg0MTgsImV4cCI6MTY3NjMwOTMxOCwiaXNzIjoiaUJlaW5uaUlzc3VlciIsImF1ZCI6ImlCZWlubmlBdWRpZW5jZSJ9.oCwg5rPDna3VKiOYhP9zHyD6cSxuLweq5rQXYFeIsHc", player);
+        }
+    }
+}
